@@ -12542,11 +12542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DutchTreat\\DutchTreat\\DutchTreat.csproj",
+      "projectUniqueName": "D:\\Repos\\DutchTreat\\DutchTreat\\DutchTreat.csproj",
       "projectName": "DutchTreat",
-      "projectPath": "D:\\DutchTreat\\DutchTreat\\DutchTreat.csproj",
+      "projectPath": "D:\\Repos\\DutchTreat\\DutchTreat\\DutchTreat.csproj",
       "packagesPath": "C:\\Users\\dyche\\.nuget\\packages\\",
-      "outputPath": "D:\\DutchTreat\\DutchTreat\\obj\\",
+      "outputPath": "D:\\Repos\\DutchTreat\\DutchTreat\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
