@@ -14,9 +14,9 @@ D:\Repos\DutchTreat\DutchTreat\bin\Debug\netcoreapp2.0\DutchTreat.runtimeconfig.
 D:\Repos\DutchTreat\DutchTreat\bin\Debug\netcoreapp2.0\DutchTreat.runtimeconfig.dev.json
 D:\Repos\DutchTreat\DutchTreat\bin\Debug\netcoreapp2.0\DutchTreat.dll
 D:\Repos\DutchTreat\DutchTreat\bin\Debug\netcoreapp2.0\DutchTreat.pdb
-D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.csprojResolveAssemblyReference.cache
 D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.csproj.CoreCompileInputs.cache
 D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.AssemblyInfoInputs.cache
 D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.AssemblyInfo.cs
 D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.dll
 D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.pdb
+D:\Repos\DutchTreat\DutchTreat\obj\Debug\netcoreapp2.0\DutchTreat.csprojResolveAssemblyReference.cache
