@@ -1,5 +1,7 @@
-﻿using DutchTreat.Data;
+﻿using AutoMapper;
+using DutchTreat.Data;
 using DutchTreat.Data.Entities;
+using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,19 +16,23 @@ namespace DutchTreat.Controllers
 	{
 		private readonly IDutchRepository _repository;
 		private readonly ILogger<OrdersController> _logger;
+        private readonly IMapper _mapper;
 
-		public OrdersController(IDutchRepository repository, ILogger<OrdersController> logger)
+        public OrdersController(IDutchRepository repository, ILogger<OrdersController> logger, IMapper mapper)
 		{
 			_repository = repository;
 			_logger = logger;
-		}
+            _mapper = mapper;
+        }
 
 		[HttpGet]
-		public IActionResult Get()
+		public IActionResult Get(bool includeItems = true)
 		{
 			try
 			{
-				return Ok(_repository.GetAllOrders());
+                var results = _repository.GetAllOrders(includeItems);
+
+                return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
 			}
 			catch (Exception ex)
 			{
@@ -41,7 +47,7 @@ namespace DutchTreat.Controllers
 			try
 			{
 				var order = _repository.GetOrderById(id);
-				if (order != null) return Ok(order);
+				if (order != null) return Ok(_mapper.Map<Order, OrderViewModel>(order));
 				else return NotFound();
 			}
 			catch (Exception ex)
@@ -52,23 +58,38 @@ namespace DutchTreat.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Post([FromBody]Order model)
+		public IActionResult Post([FromBody]OrderViewModel model)
 		{
 			try
 			{
-				_repository.AddEntity(model);
-				if (_repository.SaveAll())
-				{
-					return Created($"/api/orders/{model.Id}", model);
-				}
+                if (ModelState.IsValid)
+                {
+                    var newOrder = _mapper.Map<OrderViewModel, Order>(model);
 
-				return BadRequest("Failed to create order");
+                    if (newOrder.OrderDate == DateTime.MinValue)
+                    {
+                        newOrder.OrderDate = DateTime.Now;
+                    }
+
+                    _repository.AddEntity(newOrder);
+                    if (_repository.SaveAll())
+                    {
+                        var vm = _mapper.Map<Order, OrderViewModel>(newOrder);
+
+                        return Created($"/api/orders/{vm.OrderId}", vm);
+                    }
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError($"Failed to create order: {ex}");
-				return BadRequest("Failed to create order");
-			}
-		}
+            }
+
+            return BadRequest("Failed to create order");
+        }
     }
 }
